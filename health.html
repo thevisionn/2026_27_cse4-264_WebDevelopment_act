@@ -1,0 +1,749 @@
+DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriLife | Healthy Food & Nutrition</title>
+    <link rel="stylesheet" href="style.css">
+
+<style>
+    
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f8fbf6;
+    color: #26352b;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navigation */
+header {
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    color: #238447;
+    font-size: 27px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    font-size: 15px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #27984d;
+}
+
+/* Hero */
+.hero {
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    padding: 65px 8%;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(10, 45, 25, 0.88),
+            rgba(10, 45, 25, 0.22)
+        ),
+        url("https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1600&q=85")
+        center/cover no-repeat;
+    color: white;
+}
+
+.hero-content {
+    max-width: 620px;
+}
+
+.tagline {
+    color: #b8f3b9;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #a9ed9f;
+}
+
+.hero-content > p:not(.tagline) {
+    font-size: 17px;
+    max-width: 520px;
+    margin-bottom: 28px;
+}
+
+.btn {
+    display: inline-block;
+    background: #36a657;
+    color: white;
+    padding: 13px 27px;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #247e3d;
+    transform: translateY(-2px);
+}
+
+/* Common Sections */
+.section {
+    padding: 65px 7%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    color: #204d30;
+    margin-bottom: 8px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #718074;
+    margin-bottom: 35px;
+}
+
+/* Food Categories */
+.category-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.category-card {
+    background: white;
+    text-align: center;
+    padding: 28px 12px;
+    border-radius: 14px;
+    border: 1px solid #e7efe5;
+    transition: 0.3s;
+}
+
+.category-card span {
+    font-size: 38px;
+}
+
+.category-card h3 {
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(27, 89, 44, 0.1);
+    color: #26964a;
+}
+
+/* Recipe Cards */
+.recipes-section {
+    background: #edf5e9;
+}
+
+.recipe-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.recipe-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+.recipe-card img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.recipe-content {
+    padding: 22px;
+}
+
+.category-label {
+    display: inline-block;
+    color: #268a45;
+    background: #e6f7e7;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.recipe-content h3 {
+    font-size: 22px;
+    margin: 12px 0 8px;
+    color: #254a30;
+}
+
+.recipe-content p {
+    color: #6a786d;
+    font-size: 14px;
+}
+
+.recipe-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 18px 0;
+    padding: 12px 0;
+    border-top: 1px solid #e9eee8;
+    border-bottom: 1px solid #e9eee8;
+    font-size: 13px;
+    color: #328249;
+    font-weight: bold;
+}
+
+.recipe-content h4 {
+    margin-bottom: 8px;
+}
+
+.recipe-content ul {
+    padding-left: 20px;
+    color: #647168;
+    font-size: 14px;
+}
+
+/* Meal Plan */
+.meal-section {
+    background: white;
+}
+
+.meal-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+
+.meal-card {
+    background: #f1f8ed;
+    padding: 25px 15px;
+    border-radius: 12px;
+    text-align: center;
+    border-bottom: 3px solid #59a967;
+}
+
+.meal-card span {
+    font-size: 32px;
+}
+
+.meal-card h3 {
+    margin: 12px 0 8px;
+    color: #28613a;
+    font-size: 17px;
+}
+
+.meal-card p {
+    color: #68776a;
+    font-size: 14px;
+}
+
+/* Nutrition Section */
+.nutrition-section {
+    background: #205b35;
+    color: white;
+    text-align: center;
+    padding: 60px 7%;
+}
+
+.nutrition-section h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.nutrition-section > p {
+    color: #d8eadb;
+    margin-bottom: 35px;
+}
+
+.nutrition-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.nutrition-grid span {
+    font-size: 40px;
+}
+
+.nutrition-grid h3 {
+    margin: 12px 0 6px;
+}
+
+.nutrition-grid p {
+    font-size: 14px;
+    color: #d8eadb;
+}
+
+/* Healthy Tips */
+.tips-section {
+    background: #f8fbf6;
+}
+
+.tips-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.tip-card {
+    background: white;
+    border: 1px solid #e6eee3;
+    padding: 25px 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.tip-card span {
+    font-size: 36px;
+}
+
+.tip-card h3 {
+    margin: 12px 0 8px;
+    color: #2c633a;
+    font-size: 18px;
+}
+
+.tip-card p {
+    font-size: 14px;
+    color: #6b786d;
+}
+
+/* Footer */
+footer {
+    background: #183d27;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+footer h2 {
+    color: #a9ed9f;
+    margin-bottom: 8px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #d4e2d6;
+}
+
+.copyright {
+    border-top: 1px solid #42604a;
+    margin-top: 22px;
+    padding-top: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px 20px;
+    }
+
+    .recipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .meal-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .category-grid,
+    .nutrition-grid,
+    .tips-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .nav-links {
+        gap: 10px 15px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .hero {
+        min-height: 420px;
+        padding: 50px 7%;
+        background-position: center;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .section {
+        padding: 45px 5%;
+    }
+
+    .section-title,
+    .nutrition-section h2 {
+        font-size: 26px;
+    }
+
+    .category-grid,
+    .recipe-grid,
+    .meal-grid,
+    .nutrition-grid,
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .recipe-card img {
+        height: 230px;
+    }
+}
+
+</style>    
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">🥗 NutriLife</h2>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#recipes">Recipes</a></li>
+                <li><a href="#meal-plan">Meal Plan</a></li>
+                <li><a href="#tips">Health Tips</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="tagline">EAT WELL, LIVE WELL</p>
+            <h1>Healthy Food for a<br>
+                <span>Healthier Life</span>
+            </h1>
+            <p>
+                Discover delicious recipes, balanced meal plans,
+                and simple tips to improve your everyday nutrition.
+            </p>
+            <a href="#recipes" class="btn">Explore Recipes</a>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section" id="categories">
+        <h2 class="section-title">Explore Food Categories</h2>
+        <p class="section-subtitle">
+            Find nutritious food for every part of your day.
+        </p>
+
+        <div class="category-grid">
+            <a href="#recipes" class="category-card">
+                <span>🥗</span>
+                <h3>Healthy Salads</h3>
+            </a>
+
+            <a href="#recipes" class="category-card">
+                <span>🍳</span>
+                <h3>Breakfast</h3>
+            </a>
+
+            <a href="#recipes" class="category-card">
+                <span>🍲</span>
+                <h3>Lunch</h3>
+            </a>
+
+            <a href="#recipes" class="category-card">
+                <span>🍓</span>
+                <h3>Healthy Snacks</h3>
+            </a>
+        </div>
+    </section>
+
+    <!-- Recipe Cards -->
+    <section class="section recipes-section" id="recipes">
+        <h2 class="section-title">Popular Healthy Recipes</h2>
+        <p class="section-subtitle">
+            Simple, tasty, and nutritious meals to try at home.
+        </p>
+
+        <div class="recipe-grid">
+
+            <article class="recipe-card">
+                <img
+                    src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
+                    alt="Fresh vegetable salad">
+
+                <div class="recipe-content">
+                    <span class="category-label">SALAD</span>
+                    <h3>Fresh Garden Salad</h3>
+                    <p>
+                        A refreshing mix of vegetables with a light
+                        lemon dressing.
+                    </p>
+
+                    <div class="recipe-info">
+                        <span>⏱ 15 min</span>
+                        <span>🔥 ~180 kcal</span>
+                    </div>
+
+                    <h4>Ingredients</h4>
+                    <ul>
+                        <li>1 cup cucumber</li>
+                        <li>1 tomato and lettuce</li>
+                        <li>1 tsp olive oil</li>
+                        <li>Lemon juice and salt</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="recipe-card">
+                <img
+                    src="https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&fit=crop&w=800&q=80"
+                    alt="Healthy oatmeal breakfast">
+
+                <div class="recipe-content">
+                    <span class="category-label">BREAKFAST</span>
+                    <h3>Fruit Oatmeal Bowl</h3>
+                    <p>
+                        Fiber-rich oats topped with fresh fruit
+                        for an energizing breakfast.
+                    </p>
+
+                    <div class="recipe-info">
+                        <span>⏱ 10 min</span>
+                        <span>🔥 ~300 kcal</span>
+                    </div>
+
+                    <h4>Ingredients</h4>
+                    <ul>
+                        <li>1/2 cup rolled oats</li>
+                        <li>1 cup milk or fortified soy milk</li>
+                        <li>1 small banana</li>
+                        <li>1 tsp chia seeds</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="recipe-card">
+                <img
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
+                    alt="Nutritious vegetable and lentil bowl">
+
+                <div class="recipe-content">
+                    <span class="category-label">LUNCH</span>
+                    <h3>Lentil Power Bowl</h3>
+                    <p>
+                        Protein-packed lentils served with rice
+                        and colorful vegetables.
+                    </p>
+
+                    <div class="recipe-info">
+                        <span>⏱ 25 min</span>
+                        <span>🔥 ~400 kcal</span>
+                    </div>
+
+                    <h4>Ingredients</h4>
+                    <ul>
+                        <li>1 cup cooked lentils or dal</li>
+                        <li>1/2 cup cooked rice</li>
+                        <li>Mixed vegetables</li>
+                        <li>Spices and fresh coriander</li>
+                    </ul>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Weekly Meal Plan -->
+    <section class="section meal-section" id="meal-plan">
+        <h2 class="section-title">Simple Daily Meal Plan</h2>
+        <p class="section-subtitle">
+            An example of a balanced day of eating.
+        </p>
+
+        <div class="meal-grid">
+            <div class="meal-card">
+                <span>🌅</span>
+                <h3>Breakfast</h3>
+                <p>Oats, banana and milk</p>
+            </div>
+
+            <div class="meal-card">
+                <span>🍎</span>
+                <h3>Mid-Morning</h3>
+                <p>Seasonal fruit and nuts</p>
+            </div>
+
+            <div class="meal-card">
+                <span>☀️</span>
+                <h3>Lunch</h3>
+                <p>Dal, roti, vegetables and curd</p>
+            </div>
+
+            <div class="meal-card">
+                <span>☕</span>
+                <h3>Evening Snack</h3>
+                <p>Roasted chana or sprouts</p>
+            </div>
+
+            <div class="meal-card">
+                <span>🌙</span>
+                <h3>Dinner</h3>
+                <p>Vegetables, roti and paneer</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition Facts -->
+    <section class="nutrition-section">
+        <h2>Build a Balanced Plate</h2>
+        <p>Choose a variety of foods to support your health.</p>
+
+        <div class="nutrition-grid">
+            <div>
+                <span>🥦</span>
+                <h3>Vegetables & Fruits</h3>
+                <p>Fiber, vitamins and minerals</p>
+            </div>
+
+            <div>
+                <span>🌾</span>
+                <h3>Whole Grains</h3>
+                <p>Energy and dietary fiber</p>
+            </div>
+
+            <div>
+                <span>🥚</span>
+                <h3>Protein Foods</h3>
+                <p>Eggs, dal, beans and paneer</p>
+            </div>
+
+            <div>
+                <span>🥛</span>
+                <h3>Calcium Sources</h3>
+                <p>Milk, curd and fortified alternatives</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Healthy Tips -->
+    <section class="section tips-section" id="tips">
+        <h2 class="section-title">Healthy Eating Tips</h2>
+
+        <div class="tips-grid">
+            <div class="tip-card">
+                <span>💧</span>
+                <h3>Stay Hydrated</h3>
+                <p>Drink water regularly throughout the day.</p>
+            </div>
+
+            <div class="tip-card">
+                <span>🥬</span>
+                <h3>Eat More Vegetables</h3>
+                <p>Add different colored vegetables to your meals.</p>
+            </div>
+
+            <div class="tip-card">
+                <span>🍽️</span>
+                <h3>Eat Balanced Meals</h3>
+                <p>Include grains, protein, fruits and vegetables.</p>
+            </div>
+
+            <div class="tip-card">
+                <span>🏃</span>
+                <h3>Keep Moving</h3>
+                <p>Combine nutritious food with regular activity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>🥗 NutriLife</h2>
+        <p>Small healthy choices make a big difference.</p>
+        <p class="copyright">
+            &copy; 2026 NutriLife. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>

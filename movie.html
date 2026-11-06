@@ -1,0 +1,553 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineScope - Movie Reviews</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+    
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #101018;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Navigation */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    background-color: #191923;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #30303c;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #ffcc33;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffcc33;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 430px;
+    display: flex;
+    align-items: center;
+    padding: 60px 8%;
+    background:
+        linear-gradient(90deg, #101018 10%, rgba(16,16,24,0.8) 55%,
+        rgba(16,16,24,0.25)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.tagline {
+    color: #ffcc33;
+    letter-spacing: 3px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero-content > p:not(.tagline) {
+    color: #d0d0d8;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #ffcc33;
+    color: #171717;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* Movie Section */
+.movies-section {
+    padding: 60px 7%;
+}
+
+.movies-section h2,
+.top-rated h2,
+.about h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.section-description {
+    text-align: center;
+    color: #aaaab8;
+    margin-bottom: 35px;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+}
+
+/* Movie Cards */
+.movie-card {
+    background-color: #1b1b27;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #30303c;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+    background-color: #292936;
+}
+
+.movie-info {
+    padding: 20px;
+}
+
+.genre {
+    display: inline-block;
+    background-color: #333342;
+    color: #ffcc33;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.movie-info h3 {
+    font-size: 23px;
+    margin-bottom: 5px;
+}
+
+.year {
+    color: #aaaab8;
+    font-size: 14px;
+}
+
+.rating {
+    color: #ffcc33;
+    font-size: 19px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.cast {
+    font-size: 13px;
+    color: #d0d0d8;
+    margin-bottom: 12px;
+}
+
+.synopsis {
+    font-size: 14px;
+    color: #c5c5ce;
+    margin-bottom: 15px;
+}
+
+.review {
+    padding: 12px;
+    background-color: #252533;
+    border-left: 3px solid #ffcc33;
+    font-size: 13px;
+    color: #e2e2e9;
+    font-style: italic;
+}
+
+/* Features Section */
+.top-rated {
+    background-color: #191923;
+    padding: 60px 7%;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.feature-box {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #22222f;
+    border-radius: 10px;
+}
+
+.feature-box span {
+    font-size: 38px;
+}
+
+.feature-box h3 {
+    margin: 12px 0;
+    color: #ffcc33;
+}
+
+.feature-box p {
+    color: #c5c5ce;
+    font-size: 14px;
+}
+
+/* About Section */
+.about {
+    text-align: center;
+    padding: 55px 10%;
+}
+
+.about p {
+    max-width: 700px;
+    margin: 15px auto 0;
+    color: #c5c5ce;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #191923;
+    border-top: 1px solid #30303c;
+    color: #aaaab8;
+    font-size: 14px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero {
+        min-height: 380px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 18px 5%;
+    }
+
+    nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    .hero {
+        min-height: 350px;
+        padding: 45px 6%;
+        background-position: center;
+    }
+
+    .movies-section {
+        padding: 40px 6%;
+    }
+
+    .movies-section h2,
+    .top-rated h2,
+    .about h2 {
+        font-size: 27px;
+    }
+
+    .movie-grid,
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .movie-card img {
+        height: 400px;
+    }
+
+    .top-rated {
+        padding: 40px 6%;
+    }
+}
+
+</style>    
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="logo">🎬 CineScope</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#movies">Movies</a>
+            <a href="#top-rated">Top Rated</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="tagline">YOUR WORLD OF CINEMA</p>
+            <h1>Discover Movies.<br>Share Your Reviews.</h1>
+            <p>
+                Explore the latest releases, read honest reviews,
+                and find your next favorite movie.
+            </p>
+            <a href="#movies" class="btn">Explore Movies</a>
+        </div>
+    </section>
+
+    <!-- Movie Section -->
+    <section class="movies-section" id="movies">
+        <h2>Popular Movies</h2>
+        <p class="section-description">
+            Explore our collection of must-watch films.
+        </p>
+
+        <div class="movie-grid">
+
+            <!-- Movie 1 -->
+            <div class="movie-card">
+                <img
+                    src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"
+                    alt="Oppenheimer movie poster">
+
+                <div class="movie-info">
+                    <span class="genre">Drama / History</span>
+                    <h3>Oppenheimer</h3>
+                    <p class="year">Release: 2023</p>
+                    <div class="rating">★ 8.3/10</div>
+                    <p class="cast">Cast: Cillian Murphy, Emily Blunt</p>
+                    <p class="synopsis">
+                        The story of J. Robert Oppenheimer and his role
+                        in the development of the atomic bomb.
+                    </p>
+                    <p class="review">
+                        "A powerful historical drama with outstanding
+                        performances and direction."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Movie 2 -->
+            <div class="movie-card">
+                <img
+                    src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
+                    alt="Parasite movie poster">
+
+                <div class="movie-info">
+                    <span class="genre">Thriller / Drama</span>
+                    <h3>Parasite</h3>
+                    <p class="year">Release: 2019</p>
+                    <div class="rating">★ 8.5/10</div>
+                    <p class="cast">Cast: Song Kang-ho, Choi Woo-shik</p>
+                    <p class="synopsis">
+                        A poor family becomes involved with a wealthy
+                        household, leading to unexpected consequences.
+                    </p>
+                    <p class="review">
+                        "A clever and suspenseful look at class
+                        inequality and human behavior."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Movie 3 -->
+            <div class="movie-card">
+                <img
+                    src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"
+                    alt="Interstellar movie poster">
+
+                <div class="movie-info">
+                    <span class="genre">Sci-Fi / Adventure</span>
+                    <h3>Interstellar</h3>
+                    <p class="year">Release: 2014</p>
+                    <div class="rating">★ 8.7/10</div>
+                    <p class="cast">Cast: Matthew McConaughey, Anne Hathaway</p>
+                    <p class="synopsis">
+                        A group of explorers travels through space
+                        searching for humanity's new home.
+                    </p>
+                    <p class="review">
+                        "An emotional space adventure with stunning
+                        visuals and an ambitious story."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Movie 4 -->
+            <div class="movie-card">
+                <img
+                    src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+                    alt="The Dark Knight movie poster">
+
+                <div class="movie-info">
+                    <span class="genre">Action / Crime</span>
+                    <h3>The Dark Knight</h3>
+                    <p class="year">Release: 2008</p>
+                    <div class="rating">★ 9.0/10</div>
+                    <p class="cast">Cast: Christian Bale, Heath Ledger</p>
+                    <p class="synopsis">
+                        Batman faces the Joker, a criminal mastermind
+                        who throws Gotham City into chaos.
+                    </p>
+                    <p class="review">
+                        "An intense superhero crime thriller with
+                        an unforgettable villain."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Movie 5 -->
+            <div class="movie-card">
+                <img
+                    src="https://image.tmdb.org/t/p/w500/2CAL2433ZeIihfX1Hb2139CX0pW.jpg"
+                    alt="The Matrix movie poster">
+
+                <div class="movie-info">
+                    <span class="genre">Sci-Fi / Action</span>
+                    <h3>The Matrix</h3>
+                    <p class="year">Release: 1999</p>
+                    <div class="rating">★ 8.7/10</div>
+                    <p class="cast">Cast: Keanu Reeves, Carrie-Anne Moss</p>
+                    <p class="synopsis">
+                        A computer programmer discovers that reality
+                        is not what it appears to be.
+                    </p>
+                    <p class="review">
+                        "A groundbreaking science-fiction film
+                        packed with imaginative action."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Movie 6 -->
+            <div class="movie-card">
+                <img
+                    src="https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg"
+                    alt="The Lord of the Rings movie poster">
+
+                <div class="movie-info">
+                    <span class="genre">Fantasy / Adventure</span>
+                    <h3>The Lord of the Rings</h3>
+                    <p class="year">Release: 2001</p>
+                    <div class="rating">★ 8.9/10</div>
+                    <p class="cast">Cast: Elijah Wood, Ian McKellen</p>
+                    <p class="synopsis">
+                        A young hobbit begins a dangerous journey
+                        to destroy a powerful and evil ring.
+                    </p>
+                    <p class="review">
+                        "An epic fantasy adventure filled with
+                        memorable characters and world-building."
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Top Rated Section -->
+    <section class="top-rated" id="top-rated">
+        <h2>Why CineScope?</h2>
+        <div class="features">
+            <div class="feature-box">
+                <span>⭐</span>
+                <h3>Honest Ratings</h3>
+                <p>Discover highly rated movies across genres.</p>
+            </div>
+
+            <div class="feature-box">
+                <span>🍿</span>
+                <h3>Movie Discovery</h3>
+                <p>Find exciting films for your next movie night.</p>
+            </div>
+
+            <div class="feature-box">
+                <span>📝</span>
+                <h3>Critic Reviews</h3>
+                <p>Explore short reviews and story summaries.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>About CineScope</h2>
+        <p>
+            CineScope is a movie discovery website designed for
+            cinema lovers. Explore films, compare ratings, and
+            discover stories from around the world.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 CineScope | Movie Reviews & Ratings</p>
+        <p>Made with ❤️ for movie lovers</p>
+    </footer>
+
+</body>
+</html>
